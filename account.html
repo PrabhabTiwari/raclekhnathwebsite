@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Microsoft Account Finder</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+    input, button { padding: 10px; font-size: 16px; margin-top: 10px; }
+    #result { margin-top: 20px; font-size: 18px; }
+  </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8710506087401415"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <h2>Find Your Microsoft Account</h2>
+  <input type="text" id="nameInput" placeholder="Enter your full name" />
+  <button onclick="findAccount()">Search</button>
+
+  <!-- Microsoft Sign-in Link -->
+  <div style="margin-top: 10px;">
+    <a href="https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=4765445b-32c6-49b0-83e6-1d93765276ca&redirect_uri=https%3A%2F%2Fwww.office.com%2Flandingv2&response_type=code%20id_token&scope=openid%20profile%20https%3A%2F%2Fwww.office.com%2Fv2%2FOfficeHome.All&response_mode=form_post&nonce=638902232027042663.NGVlZTdhNWYtZmRmMy00OTM1LWI5NjQtMTA2ZTRlYTZhZjM5YmVhOGMxYmItMzVkYi00ZmUxLWE4YzEtN2ZmNmU2NmVmYWVm&ui_locales=en-US&mkt=en-US&client-request-id=4d157b34-e9b0-42b6-81cb-e1cf7843fd6b&state=7J9-nQvssxNLwf868Z59ItxwbliJRW-GlsDq33G3U_Mq0Y9rgqSkUHI63WwaRRcgs7dI9DmUfK-SDe5O-AcXX41X2164c-Ij0vZQ_p5lj1-T-qnZRnDQMsA7r8YORXspL08ohwZNOMojuoUsglhkN5JzHUtE1FgJ6pI6qXpI8L_trvW2-rUw4lwuruT-zKr5qq8_QC2jDXO34_HnYfzZtQQSJyZxger9lelitvnzIP1KRujtETCKvcKqrWicsD3SCkznsXR19phjZuJ_wDdYstuAGo64TdUKlQgwjOqp1ZE&x-client-SKU=ID_NET8_0&x-client-ver=8.5.0.0" target="_blank">
+      <button>Go to Microsoft Login Page</button>
+    </a>
+  </div>
+
+  <div id="result"></div>
+
+  <script>
+    const accounts = [
+      {
+        name: "Abhishek Jung Kunwar",
+        username: "abishekjungkunwar@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Abiral Bhandari",
+        username: "prabhabtiwari@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Agni Dip Chapagain",
+        username: "agnidipchapagain@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Amar Bahadur Mahat",
+        username: "amarbahadurmahat@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Arpana Subedi",
+        username: "arpanasubedi@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Arpana Wagle",
+        username: "arpanawagle@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Trial Account",
+        username: "trialaccount@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Aryan Bhandari",
+        username: "aryanbhandari@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Ashok Dhakal",
+        username: "ashokdhakal@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Bidhaek Deuja",
+        username: "bidhaekdeuja@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Bidhan Deuja",
+        username: "bidhandeuja@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Bidhan Koirala",
+        username: "bidhankoirala@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Bikal Soti",
+        username: "bikalsoti@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Binayak Subedi",
+        username: "binayaksubedi@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Bipana Poudel",
+        username: "bipanapoudel@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Brejnove Pandey",
+        username: "brejnovepandey@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Kamal Gautam",
+        username: "kamalgautam@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Kamana Thapa",
+        username: "kamanathapa@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Madhab Khanal",
+        username: "madhabkhanal@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Manish Chhetri",
+        username: "manishchhetri@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Manoj Giri",
+        username: "manojgiri@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Mira Poudel",
+        username: "mirapoudel@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Nabin Adhikari",
+        username: "nabinadhikari@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Nilesh Dhewaju",
+        username: "nileshdhewaju@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Nirdosh Poudel",
+        username: "nirdoshpoudel@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Nitesh Gupta",
+        username: "niteshgupta@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Pabin Gautam",
+        username: "pabingautam@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Prabhab Tiwari",
+        username: "editor@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Prabhab Tiwari",
+        username: "prabhabtiwari@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Pranjal Poudel",
+        username: "pranjalpoudel@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Ramesh Subedi",
+        username: "rameshsubedi@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Ritika Subedi",
+        username: "ritikasubedi@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Santosh Dhakal",
+        username: "santoshdhakal@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Sapun Lamichhane",
+        username: "sapunlamichhane@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Sarbindra Neupane",
+        username: "sarbindraneupane@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Saroj Subedi",
+        username: "sarojsubedi@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Shova KC",
+        username: "shovakc@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Sudip Bastola",
+        username: "sudipbastola@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Sujan Acharya",
+        username: "sujanacharya@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Sunil Timilsena",
+        username: "suniltimilsena@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Sushant Mani Dahal",
+        username: "sushantmanidahal@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Sushil Ghimire",
+        username: "sushilghimire@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Swachchhanda Atrey",
+        username: "swachchhandaatrey@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Umesh Bhattarai",
+        username: "umeshbhattarai@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      },
+      {
+        name: "Urmila Kumal",
+        username: "urmilakumal@rotaractlekhnath.org.np",
+        password: "Rotaract Lekhnath12@"
+      }
+    ];
+
+    function findAccount() {
+      const input = document.getElementById('nameInput').value.trim().toLowerCase();
+      const user = accounts.find(u => u.name.toLowerCase() === input);
+
+      const resultDiv = document.getElementById('result');
+      if (user) {
+        resultDiv.innerHTML = `
+          <strong>Username:</strong> ${user.username}<br>
+          <strong>Password:</strong> ${user.password}
+        `;
+      } else {
+        resultDiv.innerHTML = `<span style="color:red;">Name not found. Please check spelling.</span>`;
+      }
+    }
+  </script>
+</body>
+</html>
+
+
