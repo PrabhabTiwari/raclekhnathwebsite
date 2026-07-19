@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation | Rotaract Club of Lekhnath</title>
+    <link rel="icon" href="images/title icon.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* Documentation Page Specific Styles */
+        :root {
+            --primary: #f7941d;
+            --primary-dark: #d37d15;
+            --secondary: #005691;
+            --text-light: #777;
+            --dark: #333;
+            --white: #fff;
+            --light: #f4f4f4;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        .documents-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding-top: 80px;
+            margin-bottom: 3rem;
+        }
+
+        .documents-hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            margin-top: 0;
+        }
+
+        .documents-hero-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .documents-section {
+            padding: 4rem 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Filter Styles */
+        .documents-filter {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+        }
+
+        .filter-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            background-color: var(--light);
+            border: none;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .search-box {
+            max-width: 500px;
+            margin: 1.5rem auto 0;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 3rem;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+
+        /* Card Grid */
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .document-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .document-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .document-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .document-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        /* Icon Colors */
+        .icon-constitution {
+            background-color: #e74c3c;
+        }
+
+        .icon-bylaws {
+            background-color: #3498db;
+        }
+
+        .icon-swot {
+            background-color: #f39c12;
+        }
+
+        .icon-letterhead {
+            background-color: #9b59b6;
+        }
+
+        .icon-reports {
+            background-color: #1abc9c;
+        }
+
+        .icon-minutes {
+            background-color: #34495e;
+        }
+
+        .icon-financial {
+            background-color: #27ae60;
+        }
+
+        .icon-other {
+            background-color: #7f8c8d;
+        }
+
+        .document-info h3 {
+            margin: 0 0 0.3rem 0;
+            color: var(--dark);
+            font-size: 1.1rem;
+            line-height: 1.3;
+        }
+
+        .document-info p {
+            color: var(--text-light);
+            font-size: 0.8rem;
+            margin: 0;
+        }
+
+        .document-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .document-content>p {
+            flex-grow: 1;
+            margin-bottom: 1rem;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .document-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .document-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
+
+        /* Action Buttons */
+        .btn-download,
+        .btn-preview,
+        .btn-edit,
+        .btn-delete {
+            padding: 0.5rem 0.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-family: inherit;
+        }
+
+        .btn-download {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .btn-download:hover {
+            background-color: #15507a;
+        }
+
+        .btn-preview {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-preview:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-edit {
+            background-color: #f39c12;
+            color: white;
+        }
+
+        .btn-delete {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        /* Upload Section */
+        .upload-section {
+            background-color: #f9f9f9;
+            padding: 3rem 0;
+        }
+
+        .upload-container {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .upload-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .upload-header h2 {
+            margin-top: 0;
+        }
+
+        .upload-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .upload-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .upload-form input,
+        .upload-form select,
+        .upload-form textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        .file-upload {
+            border: 2px dashed #ddd;
+            border-radius: 5px;
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .file-upload:hover {
+            border-color: var(--primary);
+        }
+
+        .file-upload i {
+            font-size: 3rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .file-upload p {
+            margin: 0.5rem 0;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .upload-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .upload-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .modal-header h2 {
+            margin-top: 0;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .documents-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .document-actions {
+                flex-wrap: wrap;
+            }
+
+            .filter-options {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="documents-hero">
+        <div class="container">
+            <div class="documents-hero-content">
+                <h1>Club Documentation</h1>
+                <p>Access and manage all official Rotaract Club of Lekhnath documents</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="documents-section">
+        <div class="container">
+            <div class="documents-filter">
+                <div class="filter-options">
+                    <button class="filter-btn active" data-filter="all">All Documents</button>
+                    <button class="filter-btn" data-filter="constitution">Constitution</button>
+                    <button class="filter-btn" data-filter="bylaws">Bylaws</button>
+                    <button class="filter-btn" data-filter="minutes">Meeting Minutes</button>
+                    <button class="filter-btn" data-filter="swot">SWOT Analysis</button>
+                    <button class="filter-btn" data-filter="letterhead">Letterhead</button>
+                    <button class="filter-btn" data-filter="reports">Reports</button>
+                    <button class="filter-btn" data-filter="financial">Financial</button>
+                </div>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="documentSearch" placeholder="Search documents or minutes...">
+                </div>
+            </div>
+
+            <div class="documents-grid" id="documentsContainer">
+            </div>
+
+            <div class="empty-state" id="emptyState" style="display: none; text-align: center; padding: 3rem;">
+                <i class="fas fa-folder-open" style="font-size: 4rem; color: #ccc; margin-bottom: 1rem;"></i>
+                <h3>No Documents Found</h3>
+                <p>There are no documents matching your search criteria.</p>
+                <button class="btn btn-primary" onclick="showUploadSection()"
+                    style="margin-top: 1rem; padding: 0.5rem 1rem; cursor: pointer; background: var(--primary); color: white; border: none; border-radius: 5px;">Upload
+                    Document</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="upload-section" id="uploadSection">
+        <div class="container">
+            <div class="upload-container">
+                <div class="upload-header">
+                    <h2>Upload New Document</h2>
+                    <p>Add a new document or meeting minute</p>
+                </div>
+                <form class="upload-form" id="uploadForm">
+                    <div class="form-group">
+                        <label for="documentTitle">Title</label>
+                        <input type="text" id="documentTitle" placeholder="e.g., 1st Board Meeting Minute" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="documentType">Category</label>
+                        <select id="documentType" required>
+                            <option value="">Select category</option>
+                            <option value="constitution">Constitution</option>
+                            <option value="bylaws">Bylaws</option>
+                            <option value="minutes">Meeting Minutes</option>
+                            <option value="swot">SWOT Analysis</option>
+                            <option value="letterhead">Letterhead</option>
+                            <option value="reports">Reports</option>
+                            <option value="financial">Financial</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="documentDescription">Description</label>
+                        <textarea id="documentDescription" placeholder="Short description of the content"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Upload File (PDF Recommended)</label>
+                        <div class="file-upload" id="fileUploadArea">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Click to upload or drag and drop</p>
+                            <p class="file-info" id="fileInfo" style="font-size: 0.8rem; color: #999;">PDF, DOC, DOCX
+                                (Max 10MB)</p>
+                            <input type="file" id="documentFile" class="file-input"
+                                accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="upload-btn">
+                        <i class="fas fa-upload" style="margin-right: 8px;"></i>Upload
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="deleteModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('deleteModal')">&times;</span>
+            <div class="modal-header">
+                <h2>Delete Document</h2>
+            </div>
+            <p>Are you sure you want to delete this document?</p>
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                <button
+                    style="padding: 0.5rem 1rem; background: #ddd; border:none; border-radius: 5px; cursor: pointer;"
+                    onclick="closeModal('deleteModal')">Cancel</button>
+                <button
+                    style="padding: 0.5rem 1rem; background: #e74c3c; color: white; border:none; border-radius: 5px; cursor: pointer;"
+                    id="confirmDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // DATA & STATE
+        // ==========================================
+        let documents = [
+            // --- 1. Constitution ---
+            {
+                id: 1,
+                title: "Club Constitution 2025",
+                type: "constitution",
+                description: "Official constitution of Rotaract Club of Lekhnath",
+                fileName: "Constitution.pdf",
+                fileSize: "2.4 MB",
+                uploadDate: "2025-07-01",
+                fileUrl: "documentation/Constitution of RAC Lekhnath.pdf"
+            },
+            // --- 2. Bylaws ---
+            {
+                id: 2,
+                title: "Club Bylaws",
+                type: "bylaws",
+                description: "Rules and regulations governing club operations",
+                fileName: "bylaws-2023.pdf",
+                fileSize: "1.8 MB",
+                uploadDate: "2025-07-01",
+                fileUrl: "documentation/Bylaws RAC Lekhnath.pdf"
+            },
+            // --- 3. SWOT Analysis ---
+            {
+                id: 3,
+                title: "SWOT Analysis 2025",
+                type: "swot",
+                description: "Strengths, Weaknesses, Opportunities, and Threats analysis",
+                fileName: "swot-analysis.pdf",
+                fileSize: "0.8 MB",
+                uploadDate: "2025-07-05",
+                fileUrl: "documentation/SWOT ANALYSIS.pdf"
+            },
+            // --- 4. Letterhead ---
+            {
+                id: 4,
+                title: "Official Letterhead",
+                type: "letterhead",
+                description: "Club's official letterhead template",
+                fileName: "Letterhead.docx",
+                fileSize: "0.5 MB",
+                uploadDate: "2025-07-01",
+                fileUrl: "documentation/RAC LEKHNATH LETTER HEAD.pdf"
+            },
+            // --- 5. Reports ---
+           
+            // --- 6. Financial ---
+            {
+                id: 6,
+                title: "Financial Guidelines",
+                type: "financial",
+                description: "Financial policies and reimbursement guidelines",
+                fileName: "Financial_Policy.pdf",
+                fileSize: "1.1 MB",
+                uploadDate: "2025-07-10",
+                fileUrl: "documentation/RAC Financial Guide Line.pdf"
+            },
+            // --- 7. MINUTES ---
+            {
+                id: 101,
+                title: "Board Meeting Minute",
+                type: "minutes",
+                description: "Minutes from the 1st Joint Board Meeting",
+                fileName: "Minute_01.pdf",
+                fileSize: "1.2 MB",
+                uploadDate: "2025-07-15",
+                fileUrl: "documentation/1st Joint Board Meeting.pdf.pdf"
+            },
+            {
+                id: 102,
+                title: "416 General Meeting",
+                type: "minutes",
+                description: "Minutes from the 416th General Meeting",
+                fileName: "Minute_01.pdf",
+                fileSize: "1.2 MB",
+                uploadDate: "2025-07-15",
+                fileUrl: "documentation/416th General Meeting.pdf"
+            },
+            {
+                id: 103,
+                title: "417 General Meeting",
+                type: "minutes",
+                description: "Minutes from the 417th General Meeting",
+                fileName: "Minute_02.pdf",
+                fileSize: "0.9 MB",
+                uploadDate: "2025-08-02",
+                fileUrl: "documentation/417th General Meeting.pdf"
+            },
+            {
+                id: 104,
+                title: "Special Meeting",
+                type: "minutes",
+                description: "Details regarding the Special Meeting",
+                fileName: "Minute_02.pdf",
+                fileSize: "0.9 MB",
+                uploadDate: "2025-08-02",
+                fileUrl: "documentation/Special Meeting.pdf"
+            },
+            {
+                id: 105,
+                title: "Special Meeting 2",
+                type: "minutes",
+                description: "Details regarding the 2nd Special Meeting",
+                fileName: "Minute_02.pdf",
+                fileSize: "0.9 MB",
+                uploadDate: "2025-08-02",
+                fileUrl: "documentation/Special Meeting 2.pdf"
+            },
+            {
+                id: 106,
+                title: "Special Meeting 3",
+                type: "minutes",
+                description: "Details regarding the 3rd Special Meeting",
+                fileName: "Minute_02.pdf",
+                fileSize: "0.9 MB",
+                uploadDate: "2025-08-02",
+                fileUrl: "documentation/Special Meeting 3.pdf"
+            },
+            {
+                id: 11,
+                title: "418 General Meeting",
+                type: "minutes",
+                description: "Minutes from the General Meeting",
+                fileName: "418th General Meeting (1).pdf",
+                fileSize: "0.9 MB",
+                uploadDate: "2025-08-02",
+                fileUrl: "documentation/418th General Meeting (1).pdf"
+            },
+             {
+                id: 12,
+                title: "Dolphin Mega Speech Competition",
+                type: "minutes",
+                description: "Minutes from the Dolphin Mega Speech Competition",
+                fileName: "Dolphin Mega Speech Competition (1).pdf",
+                fileSize: "0.9 MB",
+                uploadDate: "2025-08-02",
+                fileUrl: "documentation/Dolphin Mega Speech Competition (1).pdf"
+            },
+             {
+                id: 13,
+                title: "Makeup Card",
+                type: "minutes",
+                description: "MAKEUP CARD.pdf",
+                fileName: "MAKEUP CARD.pdf",
+                fileSize: "0.9 MB",
+                uploadDate: "2025-08-02",
+                fileUrl: "documentation/MAKEUP CARD.pdf"
+            },
+            {
+                id: 107,
+                title: "General Assembly",
+                type: "minutes",
+                description: "Minutes from the General Assembly",
+                fileName: "Minute_02.pdf",
+                fileSize: "0.9 MB",
+                uploadDate: "2025-08-02",
+                fileUrl: "documentation/General Assembly.pdf"
+            },
+            {
+                id: 108,
+                title: "15 Installation Ceremony",
+                type: "minutes",
+                description: "Minutes from the 15th Installation Ceremony",
+                fileName: "Minute_02.pdf",
+                fileSize: "0.9 MB",
+                uploadDate: "2025-08-02",
+                fileUrl: "documentation/15 installation Ceremony .pdf"
+            }
+        ]; // <--- Array properly closed here
+
+        const documentsContainer = document.getElementById('documentsContainer');
+        const emptyState = document.getElementById('emptyState');
+        const uploadForm = document.getElementById('uploadForm');
+        const fileInput = document.getElementById('documentFile');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileUploadArea = document.getElementById('fileUploadArea');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const searchInput = document.getElementById('documentSearch');
+
+        let currentFilter = 'all';
+        let currentSearch = '';
+
+        // ==========================================
+        // INITIALIZATION
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', function () {
+            renderDocuments();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // Filters
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.dataset.filter;
+                    renderDocuments();
+                });
+            });
+
+            // Search
+            searchInput.addEventListener('input', function () {
+                currentSearch = this.value.toLowerCase();
+                renderDocuments();
+            });
+
+            // File Upload UI
+            fileUploadArea.addEventListener('click', () => fileInput.click());
+            fileUploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                fileUploadArea.style.borderColor = '#f7941d';
+                fileUploadArea.style.backgroundColor = 'rgba(247, 148, 29, 0.1)';
+            });
+            fileUploadArea.addEventListener('dragleave', () => {
+                fileUploadArea.style.borderColor = '#ddd';
+                fileUploadArea.style.backgroundColor = '';
+            });
+            fileUploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                if (e.dataTransfer.files.length) {
+                    fileInput.files = e.dataTransfer.files;
+                    updateFileInfo();
+                }
+            });
+            fileInput.addEventListener('change', updateFileInfo);
+
+            // Form Submit
+            uploadForm.addEventListener('submit', handleUpload);
+        }
+
+        // ==========================================
+        // LOGIC FUNCTIONS
+        // ==========================================
+
+        function updateFileInfo() {
+            if (fileInput.files.length > 0) {
+                fileInfo.textContent = fileInput.files[0].name;
+                fileUploadArea.style.borderColor = '#f7941d';
+            } else {
+                fileInfo.textContent = 'PDF, DOC, DOCX (Max 10MB)';
+            }
+        }
+
+        function renderDocuments() {
+            let filtered = documents;
+
+            if (currentFilter !== 'all') {
+                filtered = filtered.filter(doc => doc.type === currentFilter);
+            }
+
+            if (currentSearch) {
+                filtered = filtered.filter(doc =>
+                    doc.title.toLowerCase().includes(currentSearch) ||
+                    (doc.description && doc.description.toLowerCase().includes(currentSearch))
+                );
+            }
+
+            if (filtered.length === 0) {
+                documentsContainer.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            documentsContainer.style.display = 'grid';
+            emptyState.style.display = 'none';
+
+            documentsContainer.innerHTML = filtered.map(doc => `
+                <div class="document-card" data-id="${doc.id}">
+                    <div class="document-header">
+                        <div class="document-icon icon-${doc.type}">
+                            <i class="fas fa-file-${getFileIcon(doc.fileName)}"></i>
+                        </div>
+                        <div class="document-info">
+                            <h3>${doc.title}</h3>
+                            <p>${capitalize(doc.type)}</p>
+                        </div>
+                    </div>
+                    <div class="document-content">
+                        <p>${doc.description || 'No description available.'}</p>
+                        <div class="document-meta">
+                            <span><i class="far fa-calendar"></i> ${formatDate(doc.uploadDate)}</span>
+                            <span><i class="fas fa-file-alt"></i> ${doc.fileSize}</span>
+                        </div>
+                        <div class="document-actions">
+                            <button class="btn-preview" onclick="previewDocument(${doc.id})">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            
+                            <a href="${doc.fileUrl}" class="btn-download" download="${doc.fileName}" onclick="checkDownload(event, '${doc.fileUrl}')">
+                                <i class="fas fa-download"></i> Save
+                            </a>
+                            
+                            <button class="btn-delete" onclick="confirmDelete(${doc.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- UPLOAD & VIEW LOGIC ---
+        function handleUpload(e) {
+            e.preventDefault();
+            const file = fileInput.files[0];
+
+            if (!file) { alert('Please select a file'); return; }
+
+            // 1. Create a Blob URL (This allows the "Eye" to work immediately)
+            const blobUrl = URL.createObjectURL(file);
+
+            // 2. Create Object
+            const newDoc = {
+                id: Date.now(),
+                title: document.getElementById('documentTitle').value,
+                type: document.getElementById('documentType').value,
+                description: document.getElementById('documentDescription').value,
+                fileName: file.name,
+                fileSize: (file.size / 1024 / 1024).toFixed(2) + ' MB',
+                uploadDate: new Date().toISOString().split('T')[0],
+                fileUrl: blobUrl // Store the working blob URL here
+            };
+
+            // 3. Update State
+            documents.unshift(newDoc);
+            uploadForm.reset();
+            updateFileInfo();
+
+            // 4. Switch view to the type uploaded so user sees it
+            currentFilter = newDoc.type;
+            updateFilterButtons(newDoc.type);
+            renderDocuments();
+
+            alert('Uploaded successfully! Click the Eye icon to view the file.');
+        }
+
+        function previewDocument(id) {
+            const doc = documents.find(d => d.id === id);
+            // If it's a blob URL (uploaded in this session) or a valid link
+            if (doc.fileUrl && doc.fileUrl !== '#') {
+                window.open(doc.fileUrl, '_blank');
+            } else {
+                alert('No viewable file available for this demo item.');
+            }
+        }
+
+        // --- HELPERS ---
+        function updateFilterButtons(type) {
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.filter === type) btn.classList.add('active');
+            });
+        }
+
+        function checkDownload(e, url) {
+            if (!url || url === '#') {
+                e.preventDefault();
+                alert('File not found in this demo. Please upload a file to test download/view.');
+            }
+        }
+
+        function getFileIcon(name) {
+            if (!name) return 'alt';
+            const ext = name.split('.').pop().toLowerCase();
+            if (ext === 'pdf') return 'pdf';
+            if (['doc', 'docx'].includes(ext)) return 'word';
+            if (['xls', 'xlsx'].includes(ext)) return 'excel';
+            return 'alt';
+        }
+
+        function capitalize(s) {
+            if (!s) return '';
+            return s.charAt(0).toUpperCase() + s.slice(1);
+        }
+        function formatDate(d) { return new Date(d).toLocaleDateString(); }
+
+        function showUploadSection() {
+            document.getElementById('uploadSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- DELETE MODAL ---
+        function confirmDelete(id) {
+            const doc = documents.find(d => d.id === id);
+            document.getElementById('confirmDelete').onclick = function () {
+                documents = documents.filter(d => d.id !== id);
+                renderDocuments();
+                closeModal('deleteModal');
+            };
+            document.getElementById('deleteModal').style.display = 'flex';
+        }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+    </script>
+</body>
+
+</html>

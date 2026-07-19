@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Login - Rotaract Club of Lekhnath</title>
+    <link rel="icon" href="images/title icon.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8710506087401415"
+        crossorigin="anonymous"></script>
+    <style>
+        /* Login Page Specific Styles */
+        .login-hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/slide active.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            padding: 80px 1rem 2rem;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header h1 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-size: 2.2rem;
+        }
+
+        .login-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .login-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .login-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(247, 148, 29, 0.2);
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-me input {
+            margin-right: 0.5rem;
+            width: auto;
+        }
+
+        .forgot-password {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .forgot-password:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-login:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(247, 148, 29, 0.3);
+        }
+
+        .login-footer {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .login-footer a {
+            color: var(--secondary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .login-footer a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 0.8rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 0.8rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+            border-left: 4px solid #27ae60;
+        }
+
+        /* Dashboard Styles */
+        .dashboard-container {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-header h1 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+        }
+
+        .dashboard-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .welcome-user {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .welcome-user h2 {
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .dashboard-content {
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background-color: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-card h3 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .stat-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .dashboard-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .action-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .action-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .action-card h3 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .action-card p {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn-action {
+            padding: 0.5rem 1rem;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-action:hover {
+            background-color: #15507a;
+            transform: translateY(-2px);
+        }
+
+        .btn-logout {
+            padding: 0.8rem 2rem;
+            background-color: var(--danger);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: block;
+            margin: 0 auto;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-logout:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        /* User Role Badges */
+        .user-role {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        .role-admin {
+            background-color: var(--danger);
+        }
+
+        .role-member {
+            background-color: var(--secondary);
+        }
+
+        .role-executive {
+            background-color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+
+            .login-container,
+            .dashboard-container {
+                padding: 2rem;
+                margin: 1rem;
+            }
+
+            .login-options {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .dashboard-stats,
+            .dashboard-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .login-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .dashboard-header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .login-container,
+            .dashboard-container {
+                padding: 1.5rem;
+            }
+
+            .login-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .dashboard-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header-placeholder"></div>
+
+
+    <section class="login-hero" id="loginSection">
+        <div class="login-container">
+            <div class="login-header">
+                <h1><i class="fas fa-lock" style="margin-right: 10px;"></i>Member Login</h1>
+                <p>Access your Rotaract Club of Lekhnath account</p>
+            </div>
+
+            <form class="login-form" id="loginForm">
+                <div class="error-message" id="errorMessage">
+                    <i class="fas fa-exclamation-circle"></i> Invalid username or password. Please try again.
+                </div>
+
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i> Login successful! Redirecting...
+                </div>
+
+                <div class="form-group">
+                    <label for="username"><i class="fas fa-user" style="margin-right: 8px;"></i>Username or
+                        Email</label>
+                    <input type="text" id="username" placeholder="Enter your username or email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-key" style="margin-right: 8px;"></i>Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+
+                <div class="login-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-sign-in-alt" style="margin-right: 8px;"></i>Login
+                </button>
+
+                <div class="login-footer">
+                    <p>Not a member? <a href="contact.html">Join us today</a></p>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section class="login-hero" id="dashboardSection"
+        style="display: none; align-items: flex-start; padding-top: 120px;">
+        <div class="dashboard-container" style="max-width: 1100px;">
+            <div class="dashboard-header">
+                <h1>Member Dashboard</h1>
+                <p>Welcome, <span id="userName" style="font-weight: bold; color: var(--primary);"></span>! <span
+                        id="userRole" class="user-role"></span></p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 2rem;">
+
+                <!-- READ-ONLY SECTIONS (Visible to Everyone: Members, BOD, PST) -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+
+                    <!-- Upcoming Events Feed -->
+                    <div style="background: var(--light); padding: 1.5rem; border-radius: 10px;">
+                        <h3 style="color: var(--dark); margin-bottom: 1rem;"><i class="fas fa-calendar-alt"></i>
+                            Upcoming
+                            Events</h3>
+                        <div id="dashboardEventsFeed" style="max-height: 300px; overflow-y: auto;">
+                            <p style="text-align:center;">Loading events...</p>
+                        </div>
+                    </div>
+
+                    <!-- Club Documents Feed -->
+                    <div style="background: var(--light); padding: 1.5rem; border-radius: 10px;">
+                        <h3 style="color: var(--dark); margin-bottom: 1rem;"><i class="fas fa-file-pdf"></i> Club
+                            Documents
+                        </h3>
+                        <div id="dashboardDocsFeed" style="max-height: 300px; overflow-y: auto;">
+                            <p style="text-align:center;">Loading documents...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PST / ADMIN CONTROLS (Hidden by default) -->
+                <div id="pstAdminPanel"
+                    style="display: none; background: white; border: 2px solid var(--primary); padding: 2rem; border-radius: 10px; margin-top: 1rem;">
+                    <h2 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;"><i
+                            class="fas fa-user-shield"></i> PST Admin Controls</h2>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+
+                        <!-- 1. Add User Form -->
+                        <div style="background: var(--light); padding: 1.5rem; border-radius: 8px;">
+                            <h4><i class="fas fa-user-plus"></i> Add New User</h4>
+                            <form id="addUserForm" style="margin-top: 1rem;">
+                                <input type="text" id="newFullName" placeholder="Full Name (e.g. Rtr. John)" required
+                                    style="width: 100%; margin-bottom: 10px; padding: 8px;">
+                                <input type="text" id="newUsername" placeholder="Username" required
+                                    style="width: 100%; margin-bottom: 10px; padding: 8px;">
+                                <input type="password" id="newPassword" placeholder="Password" required
+                                    style="width: 100%; margin-bottom: 10px; padding: 8px;">
+                                <select id="newRole" required style="width: 100%; margin-bottom: 10px; padding: 8px;">
+                                    <option value="member">Member</option>
+                                    <option value="BOD">BOD</option>
+                                    <option value="PST">PST</option>
+                                </select>
+                                <button type="submit" class="btn-login" style="padding: 10px;">Create User</button>
+                            </form>
+                        </div>
+
+                        <!-- 2. Add Event Form -->
+                        <div style="background: var(--light); padding: 1.5rem; border-radius: 8px;">
+                            <h4><i class="fas fa-calendar-plus"></i> Add Event</h4>
+                            <form id="addEventForm" style="margin-top: 1rem;">
+                                <input type="text" id="eventTitle" placeholder="Event Title" required
+                                    style="width: 100%; margin-bottom: 10px; padding: 8px;">
+                                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                                    <input type="date" id="eventDate" required style="width: 50%; padding: 8px;">
+                                    <input type="time" id="eventTime" required style="width: 50%; padding: 8px;">
+                                </div>
+                                <input type="text" id="eventLocation" placeholder="Location" required
+                                    style="width: 100%; margin-bottom: 10px; padding: 8px;">
+                                <select id="eventStatus" required
+                                    style="width: 100%; margin-bottom: 10px; padding: 8px;">
+                                    <option value="UPCOMING">UPCOMING</option>
+                                    <option value="REGISTER NOW">REGISTER NOW</option>
+                                    <option value="COMPLETED">COMPLETED</option>
+                                </select>
+                                <textarea id="eventDescription" placeholder="Description..." required
+                                    style="width: 100%; margin-bottom: 10px; padding: 8px;"></textarea>
+                                <button type="submit" class="btn-login" style="padding: 10px;">Publish Event</button>
+                            </form>
+                        </div>
+                        <!-- 2. Update Event Status Form -->
+                        <div style="background: var(--light); padding: 1.5rem; border-radius: 8px;">
+                            <h4><i class="fas fa-edit"></i> Update Event Status</h4>
+                            <form id="updateEventForm" style="margin-top: 1rem;">
+                                <select id="updateEventSelect" required
+                                    style="width: 100%; margin-bottom: 10px; padding: 8px;">
+                                    <option value="">Loading events...</option>
+                                </select>
+                                <select id="updateEventStatus" required
+                                    style="width: 100%; margin-bottom: 10px; padding: 8px;">
+                                    <option value="UPCOMING">UPCOMING</option>
+                                    <option value="REGISTER NOW">REGISTER NOW</option>
+                                    <option value="COMPLETED">COMPLETED</option>
+                                </select>
+                                <button type="submit" class="btn-login" style="padding: 10px;">Update Status</button>
+                            </form>
+                        </div>
+                        <!-- 3. Add Document Form -->
+                        <div style="background: var(--light); padding: 1.5rem; border-radius: 8px;">
+                            <h4><i class="fas fa-upload"></i> Upload Document</h4>
+                            <form id="addDocForm" style="margin-top: 1rem;">
+                                <input type="text" id="docTitle" placeholder="Document Title (e.g. Q1 Minutes)" required
+                                    style="width: 100%; margin-bottom: 10px; padding: 8px;">
+                                <input type="file" id="docFile" required
+                                    style="width: 100%; margin-bottom: 10px; padding: 8px; background: white;">
+                                <button type="submit" class="btn-login" style="padding: 10px;">Upload to Drive</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 1rem;">
+                    <button class="btn-logout" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="footer-placeholder"></div>
+
+
+    <script>
+        // PASTE YOUR NEW GOOGLE SCRIPT URL HERE
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxJEM5HUQ7V_E-SGteNjwF1tCJHkiXjNqARhXxyhX516wxMlAWujMlUn8uBuz3NftvUIA/exec';
+
+        // Core Elements
+        const loginSection = document.getElementById('loginSection');
+        const dashboardSection = document.getElementById('dashboardSection');
+
+        function checkLoginState() {
+            if (sessionStorage.getItem('isLoggedIn') === 'true') {
+                const role = sessionStorage.getItem('userRole');
+                loginSection.style.display = 'none';
+                dashboardSection.style.display = 'flex';
+
+                document.getElementById('userName').textContent = sessionStorage.getItem('userName');
+                document.getElementById('userRole').textContent = role.toUpperCase();
+
+                // Toggle PST Admin Panel
+                const pstPanel = document.getElementById('pstAdminPanel');
+                if (role === 'PST' || role === 'admin') {
+                    pstPanel.style.display = 'block';
+                } else {
+                    pstPanel.style.display = 'none';
+                }
+
+                // Load Feeds and populate dropdowns
+                fetchDashboardData();
+            } else {
+                loginSection.style.display = 'flex';
+                dashboardSection.style.display = 'none';
+            }
+        }
+
+        // Login Submission
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.querySelector('.btn-login');
+            btn.innerHTML = 'Checking...';
+            try {
+                const res = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        action: "login",
+                        username: document.getElementById('username').value,
+                        password: document.getElementById('password').value
+                    })
+                });
+                const result = await res.json();
+                if (result.status === "success") {
+                    sessionStorage.setItem('isLoggedIn', 'true');
+                    sessionStorage.setItem('username', document.getElementById('username').value);
+                    sessionStorage.setItem('userRole', result.role);
+                    sessionStorage.setItem('userName', result.name);
+                    checkLoginState();
+                } else {
+                    alert("Invalid Credentials");
+                }
+            } catch (err) { alert("Error connecting to server."); }
+            btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
+        });
+
+        // Helper function for handling PST Forms
+        async function submitPSTForm(formId, actionName, dataPayload, buttonSelector) {
+            const form = document.getElementById(formId);
+            const btn = form.querySelector(buttonSelector);
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Processing...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(dataPayload) });
+                const result = await res.json();
+                if (result.status === "success") {
+                    alert(result.message);
+                    form.reset();
+                    fetchDashboardData(); // Refresh feeds and dropdowns after a successful update
+                } else {
+                    alert("Error: " + result.message);
+                }
+            } catch (e) {
+                alert("Request failed.");
+            }
+
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        }
+
+        // 1. Add User
+        document.getElementById('addUserForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            submitPSTForm('addUserForm', 'addUser', {
+                action: 'addUser',
+                role: sessionStorage.getItem('userRole'),
+                newUsername: document.getElementById('newUsername').value,
+                newPassword: document.getElementById('newPassword').value,
+                newRole: document.getElementById('newRole').value,
+                newName: document.getElementById('newFullName').value
+            }, 'button');
+        });
+
+        // 2. Add Event
+        document.getElementById('addEventForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            submitPSTForm('addEventForm', 'addEvent', {
+                action: 'addEvent',
+                role: sessionStorage.getItem('userRole'),
+                username: sessionStorage.getItem('username'),
+                title: document.getElementById('eventTitle').value,
+                date: document.getElementById('eventDate').value,
+                time: document.getElementById('eventTime').value,
+                location: document.getElementById('eventLocation').value,
+                status: document.getElementById('eventStatus').value,
+                description: document.getElementById('eventDescription').value
+            }, 'button');
+        });
+
+        // 3. Add Document (Base64 Conversion)
+        document.getElementById('addDocForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const fileInput = document.getElementById('docFile');
+            if (fileInput.files.length === 0) return;
+
+            const btn = document.querySelector('#addDocForm button');
+            btn.innerHTML = 'Uploading to Drive...';
+            btn.disabled = true;
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = async function (e) {
+                const base64Data = e.target.result.split(',')[1];
+                await submitPSTForm('addDocForm', 'addDocument', {
+                    action: 'addDocument',
+                    role: sessionStorage.getItem('userRole'),
+                    username: sessionStorage.getItem('username'),
+                    docTitle: document.getElementById('docTitle').value,
+                    filename: file.name,
+                    mimeType: file.type,
+                    base64File: base64Data
+                }, 'button');
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // 4. Update Event Status (NEW LOGIC)
+        document.getElementById('updateEventForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const eventTitle = document.getElementById('updateEventSelect').value;
+
+            if (!eventTitle) {
+                alert("Please select an event to update.");
+                return;
+            }
+
+            submitPSTForm('updateEventForm', 'updateEventStatus', {
+                action: 'updateEventStatus',
+                role: sessionStorage.getItem('userRole'),
+                username: sessionStorage.getItem('username'),
+                title: eventTitle,
+                status: document.getElementById('updateEventStatus').value
+            }, 'button');
+        });
+
+        // Fetch Feeds (Events & Docs) for Dashboard
+        async function fetchDashboardData() {
+            try {
+                const res = await fetch(SCRIPT_URL);
+                const data = await res.json();
+
+                // Populate Events Feed (Filtering out COMPLETED)
+                const eventsDiv = document.getElementById('dashboardEventsFeed');
+                eventsDiv.innerHTML = '';
+
+                // Filter out completed events for the upcoming feed
+                const activeEvents = data.events ? data.events.filter(ev => ev.status !== 'COMPLETED') : [];
+
+                if (activeEvents.length > 0) {
+                    activeEvents.slice(0, 5).forEach(ev => { // Show top 5 active
+                        eventsDiv.innerHTML += `
+                <div style="border-left: 4px solid var(--primary); background: #ffffff; padding: 15px; margin-bottom: 15px; border-radius: 0 8px 8px 0; box-shadow: var(--shadow);">
+                    <strong style="color: var(--dark); font-size: 1.1rem; display: block; margin-bottom: 5px;">${ev.title}</strong>
+                    <small style="color: var(--text-light); font-size: 0.9rem;">
+                        <i class="far fa-calendar-alt" style="color: var(--primary);"></i> ${new Date(ev.date).toDateString()} &nbsp;|&nbsp; 
+                        <i class="fas fa-map-marker-alt" style="color: var(--primary);"></i> ${ev.location}
+                        <br><span style="color: var(--secondary); font-weight: bold; margin-top: 5px; display: inline-block;">Status: ${ev.status}</span>
+                    </small>
+                </div>`;
+                    });
+                } else {
+                    eventsDiv.innerHTML = '<p style="color: var(--text-light); text-align: center;">No upcoming events.</p>';
+                }
+
+                // Populate the "Update Event" dropdown in the Admin Panel
+                const updateSelect = document.getElementById('updateEventSelect');
+                if (updateSelect && data.events) {
+                    updateSelect.innerHTML = '<option value="">-- Select an Event --</option>';
+                    data.events.forEach(ev => {
+                        updateSelect.innerHTML += `<option value="${ev.title}">${ev.title} (Currently: ${ev.status})</option>`;
+                    });
+                }
+
+                // Populate Docs
+                const docsDiv = document.getElementById('dashboardDocsFeed');
+                docsDiv.innerHTML = '';
+                if (data.docs && data.docs.length > 0) {
+                    data.docs.forEach(doc => {
+                        docsDiv.innerHTML += `
+                <div style="display: flex; justify-content: space-between; align-items: center; background: #ffffff; padding: 15px; margin-bottom: 15px; border-radius: 8px; box-shadow: var(--shadow);">
+                    <span style="color: var(--dark); font-weight: 500;">
+                        <i class="fas fa-file-pdf" style="color: var(--secondary); font-size: 1.2rem; margin-right: 8px;"></i> ${doc.title}
+                    </span>
+                    <a href="${doc.url}" target="_blank" class="btn-action" style="padding: 6px 12px; text-decoration: none; font-size: 0.9rem;">View</a>
+                </div>`;
+                    });
+                } else {
+                    docsDiv.innerHTML = '<p style="color: var(--text-light); text-align: center;">No documents uploaded yet.</p>';
+                }
+            } catch (e) {
+                console.log("Failed to fetch feeds");
+            }
+        }
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            sessionStorage.clear();
+            checkLoginState();
+        });
+
+        window.addEventListener('DOMContentLoaded', checkLoginState);
+
+        // Load header and footer dynamically
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                });
+
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                    // Update current year in footer
+                    const yearElement = document.getElementById('current-year');
+                    if (yearElement) {
+                        yearElement.textContent = new Date().getFullYear();
+                    }
+                });
+        });
+
+    </script>
+</body>
+
+</html>
